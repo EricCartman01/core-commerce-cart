@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  devapp:
+    build:
+      context: .
+      target: devapp
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - RELOAD=True
+      - WORKERS=1
+    command: poetry run python -m src.entrypoints.fastapi
